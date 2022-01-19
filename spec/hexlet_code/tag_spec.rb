@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "test" do
+RSpec.describe HexletCode::Tag do
   describe ".build" do
     let(:tag_name) { "" }
     let(:params) { {} }
@@ -19,6 +19,19 @@ RSpec.describe "test" do
         let(:params) { { src: "path/to/image" } }
 
         it { is_expected.to eq(tags.img.html) }
+      end
+    end
+
+    context "paired tags" do
+      subject { described_class.build(tag_name, params) { block.call } }
+      let(:block) { ->() {  } }
+
+      context "label" do
+        let(:tag_name) { "label" }
+        let(:params) { { for: "email" } }
+        let(:block) { ->() { "Email" } }
+
+        it {is_expected.to eq(tags.label.html)}
       end
     end
   end

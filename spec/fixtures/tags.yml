@@ -3,3 +3,6 @@ br:
 
 img:
   html: '<img src="path/to/image">'
+
+label:
+  html: '<label for="email">Email</label>'
