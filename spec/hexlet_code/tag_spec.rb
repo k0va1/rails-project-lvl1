@@ -31,20 +31,20 @@ RSpec.describe HexletCode::Tag do
 
     context "paired tags" do
       subject { described_class.build(tag_name, params) { block.call } }
-      let(:block) { ->() {  } }
+      let(:block) { -> {} }
 
       context "label" do
         let(:tag_name) { "label" }
         let(:params) { { for: "email" } }
-        let(:block) { ->() { "Email" } }
+        let(:block) { -> { "Email" } }
 
-        it {is_expected.to eq(tags.label.html)}
+        it { is_expected.to eq(tags.label.html) }
       end
 
       context "div" do
         let(:tag_name) { "div" }
 
-        it {is_expected.to eq(tags.div.html)}
+        it { is_expected.to eq(tags.div.html) }
       end
     end
   end

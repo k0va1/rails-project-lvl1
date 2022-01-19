@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require 'ostruct'
-require 'json'
+require "yaml"
+require "ostruct"
+require "json"
 require "hexlet_code"
 
 module FixtureHelpers
   def tags
-    @tags_struct ||= JSON.parse(YAML.load_file(::HexletCode.root.join("spec/fixtures/tags.yml")).to_json, object_class: OpenStruct)
+    @tags ||= JSON.parse(YAML.load_file(::HexletCode.root.join("spec/fixtures/tags.yml")).to_json,
+                         object_class: OpenStruct)
   end
 end
 
