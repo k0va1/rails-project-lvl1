@@ -33,6 +33,12 @@ RSpec.describe HexletCode::Tag do
 
         it {is_expected.to eq(tags.label.html)}
       end
+
+      context "div" do
+        let(:tag_name) { "div" }
+
+        it {is_expected.to eq(tags.div.html)}
+      end
     end
   end
 end

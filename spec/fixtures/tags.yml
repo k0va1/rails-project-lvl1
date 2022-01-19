@@ -6,3 +6,6 @@ img:
 
 label:
   html: '<label for="email">Email</label>'
+
+div:
+  html: '<div></div>'

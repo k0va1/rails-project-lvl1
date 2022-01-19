@@ -24,7 +24,7 @@ module HexletCode
     end
 
     def self.paired_tags
-      %w[label]
+      %w[label div]
     end
 
     def self.unpaired_tags
