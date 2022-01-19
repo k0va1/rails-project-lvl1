@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
+require 'yaml'
+require 'ostruct'
+require 'json'
 require "hexlet_code"
+
+module FixtureHelpers
+  def tags
+    @tags_struct ||= JSON.parse(YAML.load_file(::HexletCode.root.join("spec/fixtures/tags.yml")).to_json, object_class: OpenStruct)
+  end
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,4 +21,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include FixtureHelpers
 end

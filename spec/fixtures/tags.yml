@@ -1,0 +1,5 @@
+br:
+  html: "<br>"
+
+img:
+  html: '<img src="path/to/image">'
