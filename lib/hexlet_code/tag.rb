@@ -28,7 +28,7 @@ module HexletCode
     end
 
     def self.unpaired_tags
-      %w[br hr img]
+      %w[br hr img input]
     end
   end
 end

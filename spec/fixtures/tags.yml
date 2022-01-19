@@ -9,3 +9,6 @@ label:
 
 div:
   html: '<div></div>'
+
+input:
+  html: '<input type="submit" value="Save">'

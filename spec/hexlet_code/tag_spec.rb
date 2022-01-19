@@ -20,6 +20,13 @@ RSpec.describe HexletCode::Tag do
 
         it { is_expected.to eq(tags.img.html) }
       end
+
+      context "input" do
+        let(:tag_name) { "input" }
+        let(:params) { { type: "submit", value: "Save" } }
+
+        it { is_expected.to eq(tags.input.html) }
+      end
     end
 
     context "paired tags" do
