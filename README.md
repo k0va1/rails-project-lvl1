@@ -1,3 +1,7 @@
+![CI status](https://github.com/k0va1/rails-project-lvl1/actions/workflows/master.yml/badge.svg)
+
+[![Actions Status](https://github.com/k0va1/rails-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/k0va1/rails-project-lvl1/actions)
+
 # HexletCode
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet_code`. To experiment with that code, run `bin/console` for an interactive prompt.
