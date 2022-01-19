@@ -12,3 +12,7 @@ div:
 
 input:
   html: '<input type="submit" value="Save">'
+
+form:
+  plain:
+    html: <form action="#" method="post"></form>
