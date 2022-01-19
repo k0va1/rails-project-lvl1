@@ -32,7 +32,7 @@ module HexletCode
 
       if paired_tags.include?(tag_name)
         close_tag = "</#{tag_name}>"
-        "#{open_tag}#{body.call}#{close_tag}"
+        "#{open_tag}#{body.call unless body.nil?}#{close_tag}"
       else
         open_tag
       end
@@ -43,7 +43,7 @@ module HexletCode
     end
 
     def self.paired_tags
-      %w[label div]
+      %w[label div form]
     end
 
     def self.unpaired_tags

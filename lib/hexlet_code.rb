@@ -10,4 +10,11 @@ module HexletCode
   def self.root
     Pathname.new(File.expand_path("..", __dir__))
   end
+
+  def self.form_for(object, params = {})
+    method = params[:method] || "post"
+    action = params[:url] || "#"
+
+    ::HexletCode::Tag.build("form", action: action, method: method, **params.except(:method, :url))
+  end
 end
