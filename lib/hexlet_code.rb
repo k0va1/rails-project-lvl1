@@ -20,10 +20,10 @@ module HexletCode
       @object = object
       @tags = []
 
-      method = params[:method] || "post"
-      action = params[:url] || "#"
+      method = params.delete(:method) || "post"
+      action = params.delete(:url) || "#"
 
-      template_class.build("form", action: action, method: method, **params.except(:method, :url)) do
+      template_class.build("form", action: action, method: method, **params) do
         yield(self) if block_given?
 
         # TODO: for haml & slim indentaion is important
@@ -32,23 +32,23 @@ module HexletCode
     end
 
     def input(field_name, params = {})
-      type = params[:as] || :input
+      type = params.delete(:as) || :input
 
       label = template_class.build("label", for: field_name.to_s) { field_name.to_s.capitalize }
       @tags << label
       @tags << if type == :text
-                 textarea(field_name)
+                 textarea(field_name, **params)
                else
                  template_class.build("input", name: field_name.to_s, type: "text",
-                                               value: @object.public_send(field_name))
+                                               value: @object.public_send(field_name), **params)
                end
     end
 
     def textarea(field_name, params = {})
-      cols = params[:cols] || 20
-      rows = params[:rows] || 40
+      cols = params.delete(:cols) || 20
+      rows = params.delete(:rows) || 40
 
-      template_class.build("textarea", cols: cols, rows: rows, name: field_name.to_s) do
+      template_class.build("textarea", cols: cols, rows: rows, name: field_name.to_s, **params) do
         @object.public_send(field_name)
       end
     end
