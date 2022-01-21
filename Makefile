@@ -6,3 +6,6 @@ test:
 
 lint:
 	bundle exec rubocop
+
+ac:
+	bundle exec rubocop -a
