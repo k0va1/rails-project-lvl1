@@ -17,4 +17,6 @@ form:
   plain:
     html: '<form action="#" method="post"></form>'
   with_inputs:
-    html: '<form action="#" method="post"><input name="name" type="text" value="rob"><textarea cols="20" rows="40" name="job">hexlet</textarea></form>'
+    html: '<form action="#" method="post"><label for="name">Name</label><input name="name" type="text" value="rob"><label for="job">Job</label><textarea cols="20" rows="40" name="job">hexlet</textarea></form>'
+  with_inputs_and_submit:
+    html: '<form action="#" method="post"><label for="name">Name</label><input name="name" type="text" value="rob"><label for="job">Job</label><textarea cols="20" rows="40" name="job">hexlet</textarea><input name="commit" type="submit" value="Save"></form>'

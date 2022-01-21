@@ -18,7 +18,7 @@ RSpec.describe HexletCode do
     end
 
     context "for user with inputs" do
-      let(:object) { Struct.new(:name, :job, keyword_init: true).new(name: "rob") }
+      let(:object) { Struct.new(:name, :job, keyword_init: true).new(name: "rob", job: "hexlet") }
 
       subject do
         described_class.form_for(object, params) do |f|
@@ -28,6 +28,20 @@ RSpec.describe HexletCode do
       end
 
       it { is_expected.to eq(tags.form.with_inputs.html) }
+    end
+
+    context "for user with inputs and submit" do
+      let(:object) { Struct.new(:name, :job, keyword_init: true).new(name: "rob", job: "hexlet") }
+
+      subject do
+        described_class.form_for(object, params) do |f|
+          f.input :name
+          f.input :job, as: :text
+          f.submit
+        end
+      end
+
+      it { is_expected.to eq(tags.form.with_inputs_and_submit.html) }
     end
   end
 end
