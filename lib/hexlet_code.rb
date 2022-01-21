@@ -66,7 +66,7 @@ module HexletCode
       when :slim
         ::HexletCode::SlimTag
       else
-        raise "Unsupported type for template"
+        raise ::HexletCode::Error "Unsupported type for template"
       end
     end
   end

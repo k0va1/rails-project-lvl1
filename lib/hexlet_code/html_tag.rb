@@ -25,7 +25,7 @@ module HexletCode
   class HtmlTag < ::HexletCode::Tag
     class << self
       def build(tag_name, params = {})
-        raise "Unsupported tag: #{tag_name}" unless supported_tags.include?(tag_name)
+        raise ::HexletCode::Error "Unsupported tag: #{tag_name}" unless supported_tags.include?(tag_name)
 
         params_mapping = params.map { |k, v| %(#{k}="#{v}") }
 
