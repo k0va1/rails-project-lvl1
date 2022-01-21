@@ -22,7 +22,7 @@ module HexletCode
   # <div></div>
   class Tag
     class << self
-      def build(tag_name, params = {}, &body)
+      def build(_tag_name, _params = {})
         raise "Not implemented"
       end
     end

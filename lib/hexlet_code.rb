@@ -31,15 +31,25 @@ module HexletCode
       end
     end
 
-    def input(field_name, args = {})
-      type = args[:as] || :input
+    def input(field_name, params = {})
+      type = params[:as] || :input
 
       label = template_class.build("label", for: field_name.to_s) { field_name.to_s.capitalize }
       @tags << label
       @tags << if type == :text
-        template_class.build("textarea", cols: "20", rows: "40", name: field_name.to_s) { @object.public_send(field_name) }
-      else
-        template_class.build("input", name: field_name.to_s, type: "text", value: @object.public_send(field_name))
+                 textarea(field_name)
+               else
+                 template_class.build("input", name: field_name.to_s, type: "text",
+                                               value: @object.public_send(field_name))
+               end
+    end
+
+    def textarea(field_name, params = {})
+      cols = params[:cols] || 20
+      rows = params[:rows] || 40
+
+      template_class.build("textarea", cols: cols, rows: rows, name: field_name.to_s) do
+        @object.public_send(field_name)
       end
     end
 

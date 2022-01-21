@@ -24,7 +24,7 @@ module HexletCode
   # <div></div>
   class HtmlTag < ::HexletCode::Tag
     class << self
-      def build(tag_name, params = {}, &body)
+      def build(tag_name, params = {})
         raise "Unsupported tag: #{tag_name}" unless supported_tags.include?(tag_name)
 
         params_mapping = params.map { |k, v| %(#{k}="#{v}") }
@@ -35,7 +35,7 @@ module HexletCode
 
         if paired_tags.include?(tag_name)
           close_tag = "</#{tag_name}>"
-          "#{open_tag}#{body.call unless body.nil?}#{close_tag}"
+          "#{open_tag}#{yield if block_given?}#{close_tag}"
         else
           open_tag
         end
