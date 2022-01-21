@@ -23,32 +23,7 @@ module HexletCode
   class Tag
     class << self
       def build(tag_name, params = {}, &body)
-        raise "Unsupported tag" unless supported_tags.include?(tag_name)
-
-        params_mapping = params.map { |k, v| %(#{k}="#{v}") }
-
-        params_string = params_mapping.join(" ") unless params_mapping.empty?
-
-        open_tag = "<#{[tag_name, params_string].compact.join(" ")}>"
-
-        if paired_tags.include?(tag_name)
-          close_tag = "</#{tag_name}>"
-          "#{open_tag}#{body.call unless body.nil?}#{close_tag}"
-        else
-          open_tag
-        end
-      end
-
-      def supported_tags
-        paired_tags + unpaired_tags
-      end
-
-      def paired_tags
-        %w[label div form textarea]
-      end
-
-      def unpaired_tags
-        %w[br hr img input]
+        raise "Not implemented"
       end
     end
   end

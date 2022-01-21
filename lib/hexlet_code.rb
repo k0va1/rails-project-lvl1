@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 require_relative "hexlet_code/version"
-require_relative "hexlet_code/tag"
+require_relative "hexlet_code/html_tag"
+require_relative "hexlet_code/haml_tag"
+require_relative "hexlet_code/slim_tag"
 
 # HexletCode is a DSL for building HTML forms in easy way.
 module HexletCode
   class Error < StandardError; end
 
   class << self
+    attr_accessor :template_type
+
     def root
       Pathname.new(File.expand_path("..", __dir__))
     end
@@ -19,9 +23,10 @@ module HexletCode
       method = params[:method] || "post"
       action = params[:url] || "#"
 
-      ::HexletCode::Tag.build("form", action: action, method: method, **params.except(:method, :url)) do
+      template_class.build("form", action: action, method: method, **params.except(:method, :url)) do
         yield(self) if block_given?
 
+        # TODO: for haml & slim indentaion is important
         @tags.join("")
       end
     end
@@ -29,17 +34,30 @@ module HexletCode
     def input(field_name, args = {})
       type = args[:as] || :input
 
-      label = ::HexletCode::Tag.build("label", for: field_name.to_s) { field_name.to_s.capitalize }
+      label = template_class.build("label", for: field_name.to_s) { field_name.to_s.capitalize }
       @tags << label
       @tags << if type == :text
-        ::HexletCode::Tag.build("textarea", cols: "20", rows: "40", name: field_name.to_s) { @object.public_send(field_name) }
+        template_class.build("textarea", cols: "20", rows: "40", name: field_name.to_s) { @object.public_send(field_name) }
       else
-        ::HexletCode::Tag.build("input", name: field_name.to_s, type: "text", value: @object.public_send(field_name))
+        template_class.build("input", name: field_name.to_s, type: "text", value: @object.public_send(field_name))
       end
     end
 
     def submit(value = "Save")
-      @tags << ::HexletCode::Tag.build("input", name: "commit", type: "submit", value: value)
+      @tags << template_class.build("input", name: "commit", type: "submit", value: value)
+    end
+
+    def template_class(type: :html)
+      case type
+      when :html
+        ::HexletCode::HtmlTag
+      when :haml
+        ::HexletCode::HamlTag
+      when :slim
+        ::HexletCode::SlimTag
+      else
+        raise "Unsupported type for template"
+      end
     end
   end
 end

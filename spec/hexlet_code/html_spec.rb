@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe HexletCode::Tag do
+RSpec.describe HexletCode::HtmlTag do
   describe ".build" do
     let(:tag_name) { "" }
     let(:params) { {} }
