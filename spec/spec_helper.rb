@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require "yaml"
-require "ostruct"
-require "json"
-require "hexlet_code"
+require 'yaml'
+require 'ostruct'
+require 'json'
+require 'hexlet_code'
 
 module FixtureHelpers
   def tags
-    @tags ||= JSON.parse(YAML.load_file(::HexletCode.root.join("spec/fixtures/tags.yml")).to_json,
+    @tags ||= JSON.parse(YAML.load_file(::HexletCode.root.join('spec/fixtures/tags.yml')).to_json,
                          object_class: OpenStruct)
   end
 end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.example_status_persistence_file_path = '.rspec_status'
 
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!

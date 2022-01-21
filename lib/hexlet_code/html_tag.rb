@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "tag"
+require_relative 'tag'
 
 module HexletCode
   # How to use?
@@ -29,9 +29,9 @@ module HexletCode
 
         params_mapping = params.map { |k, v| %(#{k}="#{v}") }
 
-        params_string = params_mapping.join(" ") unless params_mapping.empty?
+        params_string = params_mapping.join(' ') unless params_mapping.empty?
 
-        open_tag = "<#{[tag_name, params_string].compact.join(" ")}>"
+        open_tag = "<#{[tag_name, params_string].compact.join(' ')}>"
 
         if paired_tags.include?(tag_name)
           close_tag = "</#{tag_name}>"

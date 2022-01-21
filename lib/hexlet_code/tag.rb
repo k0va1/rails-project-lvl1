@@ -23,7 +23,7 @@ module HexletCode
   class Tag
     class << self
       def build(_tag_name, _params = {})
-        raise ::HexletCode::Error "Not implemented"
+        raise ::HexletCode::Error 'Not implemented'
       end
     end
   end
