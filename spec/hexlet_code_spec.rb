@@ -16,5 +16,18 @@ RSpec.describe HexletCode do
 
       it { is_expected.to eq(tags.form.plain.html) }
     end
+
+    context "for user with inputs" do
+      let(:object) { Struct.new(:name, :job, keyword_init: true).new(name: "rob") }
+
+      subject do
+        described_class.form_for(object, params) do |f|
+          f.input :name
+          f.input :job, as: :text
+        end
+      end
+
+      it { is_expected.to eq(tags.form.with_inputs.html) }
+    end
   end
 end

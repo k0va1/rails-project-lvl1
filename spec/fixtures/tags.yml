@@ -15,4 +15,6 @@ input:
 
 form:
   plain:
-    html: <form action="#" method="post"></form>
+    html: '<form action="#" method="post"></form>'
+  with_inputs:
+    html: '<form action="#" method="post"><input name="name" type="text" value="rob"><textarea cols="20" rows="40" name="job">hexlet</textarea></form>'
