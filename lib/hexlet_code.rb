@@ -27,7 +27,7 @@ module HexletCode
         yield(self) if block_given?
 
         # TODO: for haml & slim indentaion is important
-        @tags.join('')
+        @tags.join
       end
     end
 
