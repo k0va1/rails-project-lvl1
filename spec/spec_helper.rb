@@ -6,10 +6,12 @@ require 'json'
 require 'hexlet_code'
 
 module FixtureHelpers
+  # rubocop:disable Style/OpenStructUse
   def tags
     @tags ||= JSON.parse(YAML.load_file(::HexletCode.root.join('spec/fixtures/tags.yml')).to_json,
                          object_class: OpenStruct)
   end
+  # rubocop:enable Style/OpenStructUse
 end
 
 RSpec.configure do |config|

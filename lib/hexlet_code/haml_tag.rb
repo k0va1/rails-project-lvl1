@@ -5,7 +5,5 @@ require_relative 'tag'
 module HexletCode
   # Builder for HAML tags
   class HamlTag < ::HexletCode::Tag
-    class << self
-    end
   end
 end
