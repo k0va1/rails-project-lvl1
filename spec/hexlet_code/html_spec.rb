@@ -7,6 +7,14 @@ RSpec.describe HexletCode::HtmlTag do
 
     subject { described_class.build(tag_name, params) }
 
+    context 'unsupported tag' do
+      let(:tag_name) { 'hello' }
+
+      it 'raises error' do
+        expect { subject }.to raise_error(::HexletCode::Error, "Unsupported tag: `#{tag_name}`")
+      end
+    end
+
     context 'single tags' do
       context 'br' do
         let(:tag_name) { 'br' }
