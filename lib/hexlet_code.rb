@@ -2,8 +2,6 @@
 
 require_relative 'hexlet_code/version'
 require_relative 'hexlet_code/html_tag'
-require_relative 'hexlet_code/haml_tag'
-require_relative 'hexlet_code/slim_tag'
 
 # HexletCode is a DSL for building HTML forms in easy way.
 module HexletCode
@@ -38,10 +36,10 @@ module HexletCode
       @tags << label
       @tags << if type == :text
                  textarea(field_name, **params)
-               else
-                 template_class.build('input', name: field_name.to_s, type: 'text',
-                                               value: @object.public_send(field_name), **params)
-               end
+      else
+        template_class.build('input', name: field_name.to_s, type: 'text',
+                             value: @object.public_send(field_name), **params)
+      end
     end
 
     def textarea(field_name, params = {})
@@ -61,10 +59,6 @@ module HexletCode
       case type
       when :html
         ::HexletCode::HtmlTag
-      when :haml
-        ::HexletCode::HamlTag
-      when :slim
-        ::HexletCode::SlimTag
       else
         raise ::HexletCode::Error 'Unsupported type for template'
       end
