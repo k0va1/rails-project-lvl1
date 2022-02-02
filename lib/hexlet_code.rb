@@ -2,6 +2,7 @@
 
 require_relative 'hexlet_code/version'
 require_relative 'hexlet_code/html_tag'
+require_relative 'hexlet_code/input_tag_builder'
 
 # HexletCode is a DSL for building HTML forms in easy way.
 module HexletCode
@@ -30,25 +31,11 @@ module HexletCode
     end
 
     def input(field_name, params = {})
-      type = params.delete(:as) || :input
-
       label = template_class.build('label', for: field_name.to_s) { field_name.to_s.capitalize }
+      value = @object.public_send(field_name)
+
       @tags << label
-      @tags << if type == :text
-                 textarea(field_name, **params)
-      else
-        template_class.build('input', name: field_name.to_s, type: 'text',
-                             value: @object.public_send(field_name), **params)
-      end
-    end
-
-    def textarea(field_name, params = {})
-      cols = params.delete(:cols) || 20
-      rows = params.delete(:rows) || 40
-
-      template_class.build('textarea', cols: cols, rows: rows, name: field_name.to_s, **params) do
-        @object.public_send(field_name)
-      end
+      @tags << InputTagBuilder.new(template_class).call(field_name, value, **params)
     end
 
     def submit(value = 'Save')
