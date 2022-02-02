@@ -1,17 +1,11 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require 'ostruct'
-require 'json'
 require 'hexlet_code'
 
 module FixtureHelpers
-  # rubocop:disable Style/OpenStructUse
-  def tags
-    @tags ||= JSON.parse(YAML.load_file(::HexletCode.root.join('spec/fixtures/tags.yml')).to_json,
-                         object_class: OpenStruct)
+  def tags(path)
+    File.read(::HexletCode.root.join("spec/fixtures/#{path}")).strip
   end
-  # rubocop:enable Style/OpenStructUse
 end
 
 RSpec.configure do |config|

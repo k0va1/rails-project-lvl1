@@ -11,21 +11,21 @@ RSpec.describe HexletCode::HtmlTag do
       context 'br' do
         let(:tag_name) { 'br' }
 
-        it { is_expected.to eq(tags.br.html) }
+        it { is_expected.to eq(tags('html/br.html')) }
       end
 
       context 'img' do
         let(:tag_name) { 'img' }
         let(:params) { { src: 'path/to/image' } }
 
-        it { is_expected.to eq(tags.img.html) }
+        it { is_expected.to eq(tags('html/img.html')) }
       end
 
       context 'input' do
         let(:tag_name) { 'input' }
         let(:params) { { type: 'submit', value: 'Save' } }
 
-        it { is_expected.to eq(tags.input.html) }
+        it { is_expected.to eq(tags('html/input.html')) }
       end
     end
 
@@ -38,13 +38,13 @@ RSpec.describe HexletCode::HtmlTag do
         let(:params) { { for: 'email' } }
         let(:block) { -> { 'Email' } }
 
-        it { is_expected.to eq(tags.label.html) }
+        it { is_expected.to eq(tags('html/label.html')) }
       end
 
       context 'div' do
         let(:tag_name) { 'div' }
 
-        it { is_expected.to eq(tags.div.html) }
+        it { is_expected.to eq(tags('html/div.html')) }
       end
     end
   end
