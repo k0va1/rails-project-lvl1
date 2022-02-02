@@ -27,11 +27,11 @@ module HexletCode
       def build(tag_name, params = {})
         raise ::HexletCode::Error, "Unsupported tag: `#{tag_name}`" unless supported_tags.include?(tag_name)
 
-        params_mapping = params.map { |k, v| %(#{k}="#{v}") }
+        attributes_with_values = params.map { |k, v| %(#{k}="#{v}") }
 
-        params_string = params_mapping.join(' ') unless params_mapping.empty?
+        attributes_string = attributes_with_values.join(' ') unless attributes_with_values.empty?
 
-        open_tag = "<#{[tag_name, params_string].compact.join(' ')}>"
+        open_tag = "<#{[tag_name, attributes_string].compact.join(' ')}>"
 
         if paired_tags.include?(tag_name)
           close_tag = "</#{tag_name}>"
