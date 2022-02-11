@@ -11,9 +11,9 @@ module HexletCode
         attributes_string = attributes_with_values.join(' ') unless attributes_with_values.empty?
 
         open_tag = "<#{[tag_name, attributes_string].compact.join(' ')}>"
+        close_tag = "</#{tag_name}>"
 
         if paired_tags.include?(tag_name)
-          close_tag = "</#{tag_name}>"
           "#{open_tag}#{yield if block_given?}#{close_tag}"
         else
           open_tag
