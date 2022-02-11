@@ -10,13 +10,14 @@ module HexletCode
     end
 
     def call(field_name, value, params = {})
-      type = params.delete(:as) || :input
+      type = params[:as] || :input
+      params_for_tag = params.except(:as)
 
       case type
       when :text
-        textarea(field_name, value, **params)
+        textarea(field_name, value, **params_for_tag)
       else
-        input(field_name, value, **params)
+        input(field_name, value, **params_for_tag)
       end
     end
 
@@ -28,10 +29,11 @@ module HexletCode
     end
 
     def textarea(field_name, value, params = {})
-      cols = params.delete(:cols) || 20
-      rows = params.delete(:rows) || 40
+      cols = params[:cols] || 20
+      rows = params[:rows] || 40
+      params_for_tag = params.except(:rows, :cols)
 
-      template_class.build('textarea', cols: cols, rows: rows, name: field_name.to_s, **params) do
+      template_class.build('textarea', cols: cols, rows: rows, name: field_name.to_s, **params_for_tag) do
         value
       end
     end
