@@ -19,13 +19,13 @@ module HexletCode
       @object = object
       @tags = []
 
-      method = params.delete(:method) || 'post'
-      action = params.delete(:url) || '#'
+      method = params[:method] || 'post'
+      action = params[:url] || '#'
 
-      template_class.build('form', action: action, method: method, **params) do
+      form_tag_params = params.except(:method, :url)
+      template_class.build('form', action: action, method: method, **form_tag_params) do
         yield(self) if block_given?
 
-        # TODO: for haml & slim indentaion is important
         @tags.join
       end
     end
