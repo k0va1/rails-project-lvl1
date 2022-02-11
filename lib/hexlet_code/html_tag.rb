@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'tag'
-
 module HexletCode
-  class HtmlTag < ::HexletCode::Tag
+  class HtmlTag
     class << self
       def build(tag_name, params = {})
         raise ::HexletCode::Error, "Unsupported tag: `#{tag_name}`" unless supported_tags.include?(tag_name)
